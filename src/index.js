@@ -26,7 +26,7 @@ class Demo extends React.Component {
 
     goToSearch = () => {
         console.log('sdfasfsas');
-        window.location.href = 'http://localhost:8080/search.html'
+        window.location.href = 'http://localhost:80/search.html'
     }
 
     render() {
@@ -41,6 +41,7 @@ class Demo extends React.Component {
                     <Switch>
                         <Route path='/login' component={Login} ></Route>
                         <Route path='/' exact component={Home} ></Route>
+                        <Route path='' exact component={Home} ></Route>
                     </Switch>
                 </Router>
                 {/* <Chunk /> */}

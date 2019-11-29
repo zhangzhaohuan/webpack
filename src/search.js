@@ -35,6 +35,10 @@ class Demo2 extends React.Component {
     handel=()=>{
         $('#Js_demo').css({ "color": "#ff0011", "background": "blue" });
     }
+
+    goToLogin = () => {
+        window.location.href = 'http://localhost:80/index.html'
+    }
     render() {
         return (
             <div className='search2'>
@@ -42,11 +46,11 @@ class Demo2 extends React.Component {
                     <ul>
                         <li><Link to='/detail'>detail</Link></li>
                         <li><Link to='/'>搜索首页</Link></li>
-                        <div onClick={this.goToSearch}>前往search页面</div>
+                        <div onClick={this.goToLogin}>前往登录页面</div>
                     </ul>
                     <Switch>
                         <Route path='/detail' component={Detail} ></Route>
-                        <Route path='/' exact component={Search} ></Route>
+                        <Route path='/'  component={Search} ></Route>
                     </Switch>
                 </Router>
 

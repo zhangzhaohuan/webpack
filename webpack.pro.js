@@ -18,7 +18,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'build'),
-        filename: 'static/js/[name].[hash:8].js',
+        filename: 'static/[name]/js/[name].[hash:8].js',
         chunkFilename: '[name].[chunkhash:8].chunk.js'
     },
     module: {
@@ -183,7 +183,7 @@ module.exports = {
                                 loader: 'url-loader',
                                 options: {
                                     limit: 10240,
-                                    name: 'static/image/[name].[hash:8].[ext]'
+                                    name: 'asset/image/[name].[hash:8].[ext]'
                                 }
                             }
                         ]
@@ -233,6 +233,7 @@ module.exports = {
                     reuseExistingChunk: true
                 },
                 vendors: {
+                    name: 'vendors',
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10
                 },
@@ -253,7 +254,8 @@ module.exports = {
                     reuseExistingChunk: false
                 }
             }
-        }
+        },
+        // runtimeChunk:'single'
     },
     plugins: [
         new FriendlyErrorsWebpackPlugin(),
@@ -261,8 +263,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html'),
             filename: 'index.html',
+            // chunks: ['index', 'reactbase', 'jquery', 'vendors','runtime'],
             chunks: ['index', 'reactbase', 'jquery', 'vendors'],
-            // chunks: ['index', 'custom_common_chunk'],
             inject: true,
             minify: {
                 html5: true,
@@ -276,8 +278,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/search.html'),
             filename: 'search.html',
-            chunks: ['search', 'reactbase', 'vendors'],
-            // chunks: ['search', 'custom_common_chunk'],
+            // chunks: ['search', 'reactbase', 'vendors','runtime'],
+            chunks: ['search', 'reactbase','jquery', 'vendors'],
             inject: true,
             minify: {
                 html5: true,
@@ -303,7 +305,7 @@ module.exports = {
         //     ],
         // }),
         new MiniCssExtractPlugin({
-            filename: 'static/css/[name].[hash:8].css',
+            filename: 'static/[name]/css/[name].[hash:8].css',
             chunkFilename: '[id].[hash:8].css',
         }),
         new OptimizeCssAssetsPlugin({

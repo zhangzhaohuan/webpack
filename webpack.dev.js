@@ -24,7 +24,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'static/js/[name].[hash:8].js',
+        filename: 'static/[name]/js/[name].[hash:8].js',
         publicPath: '/',
         chunkFilename: '[name].[chunkhash:8].chunk.js',
     },
@@ -207,7 +207,7 @@ module.exports = {
                                 loader: 'url-loader',
                                 options: {
                                     limit: 10240,
-                                    name: 'static/image/[name].[hash:8].[ext]'
+                                    name: 'asset/image/[name].[hash:8].[ext]'
                                 }
                             }
                         ]
@@ -236,7 +236,6 @@ module.exports = {
                     }
                 ]
             }
-
         ]
     },
     resolve: {
@@ -247,7 +246,6 @@ module.exports = {
         }
     },
     optimization: {
-        chunkIds: 'named',
         splitChunks: {
             chunks: 'all',      //[all、initial、async]:[所有、入口、异步]
             minSize: 30000,
@@ -287,7 +285,8 @@ module.exports = {
                     reuseExistingChunk: false
                 },
             }
-        }
+        },
+        // runtimeChunk: 'single'
     },
     plugins: [
         new HotModuleReplacementPlugin(),
@@ -296,9 +295,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html'),
             filename: 'index.html',
-            // chunks: ['index','reactbase','jquery','default'],
-            // chunks: ['index', 'vendors','default'],
-            // chunks: ['index', 'custom_common_chunk'],
+            // chunks: ['index', 'reactbase','jquery','vendors','runtime'],
             chunks: ['index', 'reactbase','jquery','vendors'],
             inject: true,
             minify: {
@@ -313,10 +310,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/search.html'),
             filename: 'search.html',
-            // chunks: ['index', 'vendors','default'],
-            // chunks: ['search','reactbase','jquery','default'],
-            // chunks: ['search', 'custom_common_chunk'],
-            chunks: ['search','reactbase', 'vendors'],
+            // chunks: ['search','reactbase', 'vendors','runtime'],
+            chunks: ['search','reactbase','jquery', 'vendors'],
             inject: true,
             minify: {
                 html5: true,
@@ -342,7 +337,7 @@ module.exports = {
         //     ],
         // }),
         new MiniCssExtractPlugin({
-            filename: 'static/css/[name].css',
+            filename: 'static/[name]/css/[name].css',
             chunkFilename: '[id].css',
         }),
         new OptimizeCssAssetsPlugin({
