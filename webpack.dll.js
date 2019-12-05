@@ -6,7 +6,6 @@ module.exports = {
     mode: 'production',
     entry: {
         react: ['react-dom', 'react','react-loadable','react-router-dom'],
-        jquery:['jquery']
     },
     output: {
         path: path.resolve(__dirname, 'dll'),

@@ -1,9 +1,10 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Loadable from "react-loadable";
-import $ from 'jquery';
+const  _ = require('lodash/lang');
+
 
 // import Chunk from './index/chunk';
 
@@ -29,11 +30,11 @@ const Detail = Loadable({
 
 class Demo2 extends React.Component {
     componentDidMount(){
-        console.log($);
+        const array = [1,2];
+        const newArray = _.cloneDeep(array);
     }
 
     handel=()=>{
-        $('#Js_demo').css({ "color": "#ff0011", "background": "blue" });
     }
 
     goToLogin = () => {
@@ -44,8 +45,8 @@ class Demo2 extends React.Component {
             <div className='search2'>
                 <Router>
                     <ul>
-                        <li><Link to='/detail'>detail</Link></li>
                         <li><Link to='/'>搜索首页</Link></li>
+                        <li><Link to='/detail'>detail</Link></li>
                         <div onClick={this.goToLogin}>前往登录页面</div>
                     </ul>
                     <Switch>

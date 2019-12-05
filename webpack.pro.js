@@ -237,22 +237,22 @@ module.exports = {
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10
                 },
-                reactbase: {
-                    name: 'reactbase',
-                    chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
-                    test: (module) => (/react/.test(module.context) || /react-dom/.test(module.context)
-                        || /react-router-dom/.test(module.context) || /react-loadable/.test(module.context)),
-                    priority: -1,  //权重
-                    maxInitialRequests: 5,
-                    reuseExistingChunk: false
-                },
                 jquery: {
                     name: 'jquery',
-                    chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
+                    // chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
                     test: (module) => (/jquery/.test(module.context)),
-                    priority: -1, //权重
+                    priority: 2, //权重
                     reuseExistingChunk: false
-                }
+                },
+                // reactbase: {
+                //     name: 'reactbase',
+                //     chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
+                //     test: (module) => (/react/.test(module.context) || /react-dom/.test(module.context)
+                //         || /react-router-dom/.test(module.context) || /react-loadable/.test(module.context)),
+                //     priority: -1,  //权重
+                //     maxInitialRequests: 5,
+                //     reuseExistingChunk: false
+                // },
             }
         },
         // runtimeChunk:'single'
@@ -264,7 +264,7 @@ module.exports = {
             template: path.join(__dirname, 'src/index.html'),
             filename: 'index.html',
             // chunks: ['index', 'reactbase', 'jquery', 'vendors','runtime'],
-            chunks: ['index', 'reactbase', 'jquery', 'vendors'],
+            chunks: ['index', 'jquery', 'vendors'],
             inject: true,
             minify: {
                 html5: true,
@@ -279,7 +279,7 @@ module.exports = {
             template: path.join(__dirname, 'src/search.html'),
             filename: 'search.html',
             // chunks: ['search', 'reactbase', 'vendors','runtime'],
-            chunks: ['search', 'reactbase','jquery', 'vendors'],
+            chunks: ['search', 'vendors'],
             inject: true,
             minify: {
                 html5: true,
@@ -320,31 +320,24 @@ module.exports = {
             'process.env': JSON.stringify(process.env)
         }),
 
-        // // 手动引入 DLL 动态链接库
-        // new DllReferencePlugin({
-        //     // 注意！！！
-        //     // DllReferencePlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
-        //     context: path.resolve(__dirname),
-        //     manifest: path.resolve(__dirname, 'dll/react_dll.manifest.json'),
-        // }),
-        // // 手动引入 DLL 动态链接库
-        // new DllReferencePlugin({
-        //     // 注意！！！
-        //     // DllReferencePlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
-        //     context: path.resolve(__dirname),
-        //     manifest: path.resolve(__dirname, 'dll/jquery_dll.manifest.json'),
-        // }),
-        // new AddAssetHtmlPlugin([
-        //     {
-        //         filepath: path.resolve(__dirname, 'dll/react_dll.js'),
-        //         outputPath:'dll',
-        //         publicPath:'./dll'
-        //     },
-        //     {
-        //         filepath: path.resolve(__dirname, 'dll/jquery_dll.js'),
-        //         outputPath:'dll',
-        //         publicPath:'./dll'
-        //     }
-        // ]),
+        // 手动引入 DLL 动态链接库
+        new DllReferencePlugin({
+            // 注意！！！
+            // DllReferencePlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
+            context: path.resolve(__dirname),
+            manifest: path.resolve(__dirname, 'dll/react_dll.manifest.json'),
+        }),
+        new AddAssetHtmlPlugin([
+            {
+                filepath: path.resolve(__dirname, 'dll/react_dll.js'),
+                outputPath:'dll',
+                publicPath:'/dll'
+            },
+            // {
+            //     filepath: path.resolve(__dirname, 'dll/jquery_dll.js'),
+            //     outputPath:'dll',
+            //     publicPath:'./dll'
+            // }
+        ]),
     ],
 }

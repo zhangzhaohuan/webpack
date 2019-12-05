@@ -1,8 +1,11 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Loadable from "react-loadable";
+
+const  _ = require('lodash/lang');
+
 import './index.scss';
 import './index.css';
 
@@ -21,7 +24,8 @@ const Login = Loadable({
 class Demo extends React.Component {
     componentDidMount() {
         console.log(process.env.NODE_ENV);
-
+        const array = [1,2];
+        const newArray = _.cloneDeep(array);
     }
 
     goToSearch = () => {
