@@ -14,7 +14,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
+console.log('------------------------------------');
+
+console.log(appDirectory);
+console.log(process.cwd());
+
+
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
 
 module.exports = {
     mode: 'development',
@@ -356,7 +363,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         hot: true,
-        stats: 'errors-only',
+        // stats: 'errors-only',
         historyApiFallback: true    //以免刷新页面404
     },
 }
