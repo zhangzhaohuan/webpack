@@ -7,7 +7,8 @@
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.pro.js",
     "dll": "webpack --config webpack.dll.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.js --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development node config/dev-server.js"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +36,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
+    "progress-bar-webpack-plugin": "^1.12.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "sass-loader": "^7.3.1",
