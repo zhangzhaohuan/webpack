@@ -1,13 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const { optimize } = require('webpack');
+const { optimize, DefinePlugin } = require('webpack');
 
 //css浏览器前缀
 const autoprefixer = require('autoprefixer');
 // 压缩css
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// 抽离css
+// 抽离css: dev/pro 文件hash的支持不一样
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 //路经和路径函数
@@ -278,6 +278,9 @@ module.exports = {
     // runtimeChunk: 'single'
   },
   plugins: [
+    new DefinePlugin({
+      'process.env': JSON.stringify(process.env)
+    }),
     new FriendlyErrorsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: paths.resolveApp('src/index.html'),
@@ -323,10 +326,6 @@ module.exports = {
     //         },
     //     ],
     // }),
-    new MiniCssExtractPlugin({
-      filename: 'static/[name]/css/[name].css',
-      chunkFilename: '[id].css',
-    }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano'),

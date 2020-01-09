@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { HotModuleReplacementPlugin, optimize, DefinePlugin, DllReferencePlugin } = require('webpack');
 const paths = require('./paths');
 const webpackBase = require('./webpack.base');
+// 抽离css
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = webpackMerge(webpackBase, {
   mode: 'development',
@@ -14,6 +16,10 @@ module.exports = webpackMerge(webpackBase, {
     chunkFilename: '[name].[chunkhash:8].chunk.js',
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'static/[name]/css/[name].css',
+      chunkFilename: '[id].css',
+    }),
     new HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
   ],
