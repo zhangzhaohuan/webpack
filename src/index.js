@@ -1,56 +1,44 @@
+export default function add(a, b) {
+  let i = a.length - 1;
+  let j = b.length - 1;
 
-import React from 'react';
-import ReactDom from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Loadable from "react-loadable";
-import './index.scss';
-import './index.css';
+  let carry = 0;
+  let ret = '';
+  while (i >= 0 || j >= 0) {
+      let x = 0;
+      let y = 0;
+      let sum;
 
-function Loading() {
-    return <div>loading</div>
+      if (i >= 0) {
+          x = a[i] - '0';
+          i --;
+      }
+
+      if (j >= 0) {
+          y = b[j] - '0';
+          j --;
+      }
+
+      sum = x + y + carry;
+
+      if (sum >= 10) {
+          carry = 1;
+          sum -= 10;
+      } else {
+          carry = 0;
+      }
+      // 0 + ''
+      ret = sum + ret;
+  }
+
+  if (carry) {
+      ret = carry + ret;
+  }
+
+  return ret;
 }
 
-const Home = Loadable({
-    loader: () => import("@component/home/index.js"),
-    loading: Loading
-});
-const Login = Loadable({
-    loader: () => import("@component/login/index.js"),
-    loading: Loading
-});
-class Demo extends React.Component {
-    componentDidMount() {
-        console.log(process.env.NODE_ENV);
-
-    }
-
-    goToSearch = () => {
-        console.log('sdfasfsas');
-        window.location.href = 'http://localhost:80/search.html'
-    }
-
-    render() {
-        return (
-            <div>
-                <Router>
-                    <ul>
-                        <li><Link to='/login'>login</Link></li>
-                        <li><Link to='/'>home</Link></li>
-                        <div onClick={this.goToSearch}>前往search页面</div>
-                    </ul>
-                    <Switch>
-                        <Route path='/login' component={Login} ></Route>
-                        <Route path='/' exact component={Home} ></Route>
-                        <Route path='' exact component={Home} ></Route>
-                    </Switch>
-                </Router>
-                {/* <Chunk /> */}
-            </div>
-        )
-    }
-}
-
-ReactDom.render(
-    <Demo />,
-    document.getElementById('root')
-);
+// add('999', '1');
+// add('1', '999');
+// add('123', '321');
+// console.log(add('999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999', '1'));

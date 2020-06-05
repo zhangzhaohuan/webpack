@@ -1,6 +1,10 @@
 # webpackdemo版本
 v1.0 基础多页面配置基本完成，分离打包
 v1.1 配置文件移动到config文件夹
+v1.2 webpack 打包组件和基础库
+
+### v1.2 webpack 打包资源
+
 # webpack配置
 ### webpack版本:4.1.0
 * 因为webpack 版本会导致某些插件无法使用或者插件的某个属性无法使用，本webpackdemo使用的版本是4.1.0
@@ -68,5 +72,3 @@ webpack4 + mini-css-extract-plugin
 
 
 ### DDL https://juejin.im/post/5d8aac8fe51d4578477a6699
-
-### 
