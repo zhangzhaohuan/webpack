@@ -3,6 +3,14 @@
 * v1.1 配置文件移动到config文件夹
 * v1.2 webpack 打包组件和基础库
 * v1.3 ssr
+
+# SSR 
+* 文件夹server
+* 配置文件config/webpack.ssr.js
+```
+ssr样式不显示的问题
+
+```
 # webpack配置
 ### webpack版本:4.1.0
 * 因为webpack 版本会导致某些插件无法使用或者插件的某个属性无法使用，本webpackdemo使用的版本是4.1.0
