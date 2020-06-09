@@ -1,16 +1,12 @@
-'use strict';
 const React = require('react');
-const  style  = require('./server.scss');
-class Demo extends React.Component {
+require('./server.scss');
 
-
-    render() {
-        return (
-            <div className='server'>
-                index-server.js
-            </div>
-        )
-    }
+function Demo() {
+  return (
+    <div className="server">
+      index-server.js
+    </div>
+  );
 }
 
-module.exports = <Demo />; 
+module.exports = <Demo />;

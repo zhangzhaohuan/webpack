@@ -1,3 +1,3 @@
-export function test() {
-    return 'webpack test';
+export default function test() {
+  return 'webpack test';
 }

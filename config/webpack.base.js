@@ -15,8 +15,8 @@ const paths = require('./paths');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    search: './src/search.js',
+    index: './src/index.jsx',
+    search: './src/search.jsx',
   },
   module: {
     rules: [
@@ -24,7 +24,7 @@ module.exports = {
         oneOf: [
           {
             test: /\.(js|jsx)$/,
-            use: 'babel-loader',
+            use: ['babel-loader','eslint-loader'],
             include: paths.resolveApp('src')
           },
           {
