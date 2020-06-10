@@ -7,11 +7,11 @@ import $ from 'jquery';
 
 // import Chunk from './index/chunk';
 
-import './search.scss';
-import './search2.scss';
+import './style/search.scss';
+import './style/search2.scss';
 
 // css module scc test
-import styles from './styles/search.module.scss';
+import styles from './style/search.module.scss';
 
 
 function Loading() {

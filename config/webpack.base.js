@@ -15,8 +15,8 @@ const paths = require('./paths');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    search: './src/search.js',
+    index: './src/pages/index/index.js',
+    search: './src/pages/search/search.js',
   },
   module: {
     rules: [
@@ -283,7 +283,7 @@ module.exports = {
     }),
     new FriendlyErrorsWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: paths.resolveApp('src/index.html'),
+      template: paths.resolveApp('src/pages/index/index.html'),
       filename: 'index.html',
       // chunks: ['index', 'reactbase','jquery','vendors','runtime'],
       chunks: ['index', 'reactbase', 'jquery', 'vendors'],
@@ -298,7 +298,7 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
-      template: paths.resolveApp('src/search.html'),
+      template: paths.resolveApp('src/pages/search/search.html'),
       filename: 'search.html',
       // chunks: ['search','reactbase', 'vendors','runtime'],
       chunks: ['search', 'reactbase', 'jquery', 'vendors'],

@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Loadable from "react-loadable";
-import './index.scss';
-import './index.css';
+import './style/index.scss';
+import './style/index.css';
 
 function Loading() {
     return <div>loading</div>
