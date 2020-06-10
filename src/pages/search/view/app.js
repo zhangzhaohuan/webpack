@@ -1,17 +1,16 @@
 
 import React from 'react';
-import ReactDom from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Loadable from "react-loadable";
 import $ from 'jquery';
 
 // import Chunk from './index/chunk';
 
-import './style/search.scss';
-import './style/search2.scss';
+import '../style/search.scss';
+import '../style/search2.scss';
 
 // css module scc test
-import styles from './style/search.module.scss';
+import styles from '../style/search.module.scss';
 
 
 function Loading() {
@@ -27,10 +26,7 @@ const Detail = Loadable({
     loading: Loading
 });
 
-class Demo2 extends React.Component {
-    componentDidMount(){
-        console.log($);
-    }
+class App extends React.Component {
 
     handel=()=>{
         $('#Js_demo').css({ "color": "#ff0011", "background": "blue" });
@@ -46,7 +42,7 @@ class Demo2 extends React.Component {
                     <ul>
                         <li><Link to='/detail'>detail</Link></li>
                         <li><Link to='/'>搜索首页</Link></li>
-                        <div onClick={this.goToLogin}>前往登录页面</div>
+                        <div onClick={goToLogin}>前往登录页面</div>
                     </ul>
                     <Switch>
                         <Route path='/detail' component={Detail} ></Route>
@@ -73,7 +69,4 @@ class Demo2 extends React.Component {
     }
 }
 
-ReactDom.render(
-    <Demo2 />,
-    document.getElementById('root')
-);
+export default App;

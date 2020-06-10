@@ -16,7 +16,7 @@ const paths = require('./paths');
 module.exports = {
   entry: {
     index: './src/pages/index/index.js',
-    search: './src/pages/search/search.js',
+    search: './src/pages/search/index.js',
   },
   module: {
     rules: [
@@ -298,7 +298,7 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
-      template: paths.resolveApp('src/pages/search/search.html'),
+      template: paths.resolveApp('src/pages/search/index.html'),
       filename: 'search.html',
       // chunks: ['search','reactbase', 'vendors','runtime'],
       chunks: ['search', 'reactbase', 'jquery', 'vendors'],
