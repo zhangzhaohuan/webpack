@@ -1,19 +1,13 @@
 
 export const initState = {
-    isCommon:false,
+  isCommon: false,
 };
 
-export const common_reducer = (state = initState, action) => {
-    switch (action.type) {
-        case 'common_istrue':
-            return Object.assign({}, state, { isCommon: true });
-        default:
-            return state;
-    }
+export const commonReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'common_istrue':
+      return { ...state, isCommon: true };
+    default:
+      return state;
+  }
 };
-
-
-
-
-
-

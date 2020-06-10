@@ -24,7 +24,7 @@ module.exports = {
         oneOf: [
           {
             test: /\.(js|jsx)$/,
-            use: 'babel-loader',
+            use: ['babel-loader','eslint-loader'],
             include: paths.resolveApp('src')
           },
           {
