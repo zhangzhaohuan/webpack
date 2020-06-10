@@ -9,7 +9,7 @@
 # [eslint](https://www.npmjs.com/package/eslint-config-airbnb)
 ```
 # 此处以react项目为例
-npm i eslint-loader -D
+npm i babel-eslint eslint-loader -D
 npm i eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y -D
 npm i eslint-config-airbnb -D
 添加.eslintrc.json文件
