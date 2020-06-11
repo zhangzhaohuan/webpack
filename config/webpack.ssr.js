@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { optimize, DefinePlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 //css浏览器前缀
 const autoprefixer = require('autoprefixer');
@@ -9,21 +10,19 @@ const autoprefixer = require('autoprefixer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // 抽离css: dev/pro 文件hash的支持不一样
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// HardSourceWebpackPlugin 替换dll
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 //路经和路径函数
 const paths = require('./paths');
 
 module.exports = {
+  mode: "none",
   entry: {
-<<<<<<< HEAD
-    index: './src/pages/index/index.js',
-    search: './src/pages/search/index.js',
-=======
-    index: './src/index.jsx',
-    search: './src/search.jsx',
->>>>>>> 26a6eb46d70cc64b57c384ca731ef8d5b44cb08e
+    ssr: './src/index-server'
+  },
+  output: {
+    path: paths.resolveApp('build'),
+    filename: '[name]-server.js',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
@@ -31,7 +30,7 @@ module.exports = {
         oneOf: [
           {
             test: /\.(js|jsx)$/,
-            use: ['babel-loader','eslint-loader'],
+            use: 'babel-loader',
             include: paths.resolveApp('src')
           },
           {
@@ -241,75 +240,21 @@ module.exports = {
       '@asset': paths.resolveApp('./src/asset'),
     }
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',      //[all、initial、async]:[所有、入口、异步]
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,        //每个异步模块的最大并发请求数：注意：同时又两个模块满足拆分条件的时候更大的包会先被拆分
-      maxInitialRequests: 3,      //每个入口文件的最大并发请求数：注意：同时又两个模块满足拆分条件的时候更大的包会先被拆分
-      // automaticNameDelimiter: '~',
-      // name: 'custom_common_chunk',
-      // splitChunks的配置项都是作用于cacheGroup上的，
-      cacheGroups: {
-        default: {
-          // name:'default',
-          minChunks: 2,
-          priority: -20,  //权重
-          reuseExistingChunk: true
-        },
-        vendors: {
-          name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          enforce: true
-        },
-        reactbase: {
-          name: 'reactbase',
-          chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
-          test: (module) => (/react/.test(module.context) || /react-dom/.test(module.context)
-            || /react-router-dom/.test(module.context) || /react-loadable/.test(module.context)),
-          priority: -1,  //权重
-          maxInitialRequests: 5,
-          reuseExistingChunk: false
-        },
-        jquery: {
-          name: 'jquery',
-          chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
-          test: (module) => (/jquery/.test(module.context)),
-          priority: -1, //权重
-          reuseExistingChunk: false
-        },
-      }
-    },
-    // runtimeChunk: 'single'
-  },
   plugins: [
-    new HardSourceWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash:8].css'
+    }),
+    new CleanWebpackPlugin(),
     new DefinePlugin({
       'process.env': JSON.stringify(process.env)
     }),
     new FriendlyErrorsWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: paths.resolveApp('src/pages/index/index.html'),
-      filename: 'index.html',
-      // chunks: ['index', 'reactbase','jquery','vendors','runtime'],
-      chunks: ['index', 'reactbase', 'jquery', 'vendors'],
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    }),
-    new HtmlWebpackPlugin({
-      template: paths.resolveApp('src/pages/search/index.html'),
-      filename: 'search.html',
+      inlineSource: '.css$',
+      template: paths.resolveApp('src/server/index.html'),
+      filename: 'server.html',
       // chunks: ['search','reactbase', 'vendors','runtime'],
-      chunks: ['search', 'reactbase', 'jquery', 'vendors'],
+      chunks: ['vendors', 'ssr'],
       inject: true,
       minify: {
         html5: true,
@@ -320,20 +265,6 @@ module.exports = {
         removeComments: false
       }
     }),
-    // new HtmlWebpackExternalsPlugin({
-    //     externals: [
-    //         {
-    //             module: 'react',
-    //             entry: 'https://11.url.cn/now/lib/16.2.0/react.min.js',
-    //             global: 'React',
-    //         },
-    //         {
-    //             module: 'react-dom',
-    //             entry: 'https://11.url.cn/now/lib/16.2.0/react-dom.min.js',
-    //             global: 'ReactDOM',
-    //         },
-    //     ],
-    // }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano'),
