@@ -1,5 +1,10 @@
 # webpackdemo版本
 v1.0 基础多页面配置基本完成，分离打包
+
+
+v1.0
+* ddl配置
+
 # webpack配置
 ### webpack版本:4.1.0
 * 因为webpack 版本会导致某些插件无法使用或者插件的某个属性无法使用，本webpackdemo使用的版本是4.1.0
@@ -11,14 +16,9 @@ webpack：4.1.0 "extract-text-webpack-plugin": "^4.0.0-beta.0",但是无法使�
 webpack3 + extract-text-webpack-plugin
 webpack4 + mini-css-extract-plugin
 
-
 问题：
 不使用html-webpack-externals-plugin，改为
 
-
-问题：
-
-### 
 ### webpack4新特性及更新
 * 新增mode：
     * production:
