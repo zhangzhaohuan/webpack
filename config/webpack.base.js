@@ -17,13 +17,8 @@ const paths = require('./paths');
 
 module.exports = {
   entry: {
-<<<<<<< HEAD
     index: './src/pages/index/index.js',
     search: './src/pages/search/index.js',
-=======
-    index: './src/index.jsx',
-    search: './src/search.jsx',
->>>>>>> 26a6eb46d70cc64b57c384ca731ef8d5b44cb08e
   },
   module: {
     rules: [
