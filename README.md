@@ -67,5 +67,9 @@ webpack4 + mini-css-extract-plugin
 
 
 ### DDL https://juejin.im/post/5d8aac8fe51d4578477a6699
-
+DDL发展过程：DLL 手动配置->AutoDllPlugin->hard-source-webpack-plugin
+```
+dll时间：2052ms 
+hard-source-webpack-plugin：首次4025ms,第二次400ms
+```
 ### 
