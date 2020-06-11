@@ -1,10 +1,11 @@
 # webpackdemo版本
 v1.0 基础多页面配置基本完成，分离打包
-
+v1.0.1 source-webpack-plugin替换dll
 
 v1.0
 * ddl配置
-
+v1.0.1
+* source-webpack-plugin替换dll
 # webpack配置
 ### webpack版本:4.1.0
 * 因为webpack 版本会导致某些插件无法使用或者插件的某个属性无法使用，本webpackdemo使用的版本是4.1.0
@@ -66,10 +67,17 @@ webpack4 + mini-css-extract-plugin
 ```
 
 
-### DDL https://juejin.im/post/5d8aac8fe51d4578477a6699
-DDL发展过程：DLL 手动配置->AutoDllPlugin->hard-source-webpack-plugin
+### DLL https://juejin.im/post/5d8aac8fe51d4578477a6699
+DLL发展过程：DLL 手动配置->AutoDllPlugin->hard-source-webpack-plugin
 ```
-dll时间：2052ms 
+npm run build
+dll时间：2365ms
 hard-source-webpack-plugin：首次4025ms,第二次400ms
+
+npm run start
+splitChunks:2242s
+
+hard-source-webpack-plugin：首次2232ms,第二次923ms
+
 ```
 ### 

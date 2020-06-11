@@ -13,6 +13,7 @@ const autoprefixer = require('autoprefixer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // 抽离css
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
@@ -270,15 +271,15 @@ module.exports = {
                     priority: -10,
                     enforce: true
                 },
-                // reactbase: {
-                //     name: 'reactbase',
-                //     chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
-                //     test: (module) => (/react/.test(module.context) || /react-dom/.test(module.context)
-                //         || /react-router-dom/.test(module.context) || /react-loadable/.test(module.context)),
-                //     priority: -1,  //权重
-                //     maxInitialRequests: 5,
-                //     reuseExistingChunk: false
-                // },
+                reactbase: {
+                    name: 'reactbase',
+                    chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
+                    test: (module) => (/react/.test(module.context) || /react-dom/.test(module.context)
+                        || /react-router-dom/.test(module.context) || /react-loadable/.test(module.context)),
+                    priority: -1,  //权重
+                    maxInitialRequests: 5,
+                    reuseExistingChunk: false
+                },
                 jquery: {
                     name: 'jquery',
                     // chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
@@ -291,6 +292,7 @@ module.exports = {
         // runtimeChunk: 'single'
     },
     plugins: [
+        new HardSourceWebpackPlugin(),
         new HotModuleReplacementPlugin(),
         new FriendlyErrorsWebpackPlugin(),
         new CleanWebpackPlugin(),
@@ -298,7 +300,7 @@ module.exports = {
             template: path.join(__dirname, 'src/index.html'),
             filename: 'index.html',
             // chunks: ['index', 'reactbase','jquery','vendors','runtime'],
-            chunks: ['index','jquery','vendors'],
+            chunks: ['index','jquery','vendors','reactbase'],
             inject: true,
             minify: {
                 html5: true,
@@ -313,7 +315,7 @@ module.exports = {
             template: path.join(__dirname, 'src/search.html'),
             filename: 'search.html',
             // chunks: ['search','reactbase', 'vendors','runtime'],
-            chunks: ['search','vendors'],
+            chunks: ['search','vendors','reactbase'],
             inject: true,
             minify: {
                 html5: true,
@@ -354,24 +356,24 @@ module.exports = {
         //web端使用process.env
 
                 // 手动引入 DLL 动态链接库
-        new DllReferencePlugin({
-            // 注意！！！
-            // DllReferencePlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
-            context: path.resolve(__dirname),
-            manifest: path.resolve(__dirname, 'dll/react_dll.manifest.json'),
-        }),
-        new AddAssetHtmlPlugin([
-            {
-                filepath: path.resolve(__dirname, 'dll/react_dll.js'),
-                outputPath:'dll',
-                publicPath:'./dll'
-            },
-            // {
-            //     filepath: path.resolve(__dirname, 'dll/jquery_dll.js'),
-            //     outputPath:'dll',
-            //     publicPath:'./dll'
-            // }
-        ]),
+        // new DllReferencePlugin({
+        //     // 注意！！！
+        //     // DllReferencePlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
+        //     context: path.resolve(__dirname),
+        //     manifest: path.resolve(__dirname, 'dll/react_dll.manifest.json'),
+        // }),
+        // new AddAssetHtmlPlugin([
+        //     {
+        //         filepath: path.resolve(__dirname, 'dll/react_dll.js'),
+        //         outputPath:'dll',
+        //         publicPath:'./dll'
+        //     },
+        //     // {
+        //     //     filepath: path.resolve(__dirname, 'dll/jquery_dll.js'),
+        //     //     outputPath:'dll',
+        //     //     publicPath:'./dll'
+        //     // }
+        // ]),
     ],
     devtool: 'cheap-source-map',
     devServer: {
