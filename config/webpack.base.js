@@ -9,6 +9,8 @@ const autoprefixer = require('autoprefixer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // 抽离css: dev/pro 文件hash的支持不一样
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// HardSourceWebpackPlugin 替换dll
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 //路经和路径函数
 const paths = require('./paths');
@@ -278,6 +280,7 @@ module.exports = {
     // runtimeChunk: 'single'
   },
   plugins: [
+    new HardSourceWebpackPlugin(),
     new DefinePlugin({
       'process.env': JSON.stringify(process.env)
     }),

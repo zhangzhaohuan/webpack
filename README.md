@@ -7,6 +7,7 @@
 * 添加eslint
 * 添加.editorconfig
 * 状态管理
+* HardSourceWebpackPlugin 替换dll
 
 ### [添加eslint](https://www.npmjs.com/package/eslint-config-airbnb)
 ```
@@ -21,4 +22,11 @@ npm i eslint-config-airbnb -D
 ```
 # 添加配置文件.editorconfig
 # 安装vscode插件：EditorConfig for VS Code
+```
+
+### HardSourceWebpackPlugin 替换dll
+```
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+new HardSourceWebpackPlugin(),
+
 ```
