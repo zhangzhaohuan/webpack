@@ -7,8 +7,8 @@ const mocha = new Mocha({
     timeout: '10000ms'
 });
 
-rimraf('../buid', () => {
-    const prodConfig = require('../config/webpack.pro.js');
+rimraf('../../buid', () => {
+    const prodConfig = require('../../config/webpack.pro.js');
 
     webpack(prodConfig, (err, stats) => {
         if (err) {
