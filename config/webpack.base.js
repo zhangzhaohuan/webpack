@@ -334,7 +334,7 @@ module.exports = {
       },
       canPrint: true
     }),
-    new optimize.ModuleConcatenationPlugin(),  //scope hosting
+    new optimize.ModuleConcatenationPlugin(),  //scope hosting 生产默认的
     function () {
       this.hooks.done.tap('done', (stats) => {
         if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') == -1) {
