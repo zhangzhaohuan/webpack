@@ -9,7 +9,7 @@
 * 技术栈： react+ react-router + redux + redux-react-hook 
 
 
-## 配置文件
+## 配置文件夹config
 * webpack.base.js
 * webpack.dev.js
 * webpack.pro.js
