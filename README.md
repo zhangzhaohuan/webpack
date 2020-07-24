@@ -1,7 +1,7 @@
-# webpackdemo版本
-* v1.0 基础多页面配置基本完成，分离打包dll
-* v1.0.1 基础多页面配置基本完成，HardSourceWebpackPlugin替换dll
-* v1.1 配置文件移动到config文件夹\添加eslint\状态管理
+# webpackdemo版本分支
+* br1.0 基础多页面配置基本完成，分离打包dll
+* br1.0.1 基础多页面配置基本完成，HardSourceWebpackPlugin替换dll
+* br1.1 配置基本完善：配置文件移动到config文件夹\添加eslint\状态管理
 
 # v1.1 
 * 配置文件config
@@ -20,8 +20,6 @@
 * 生成html
 ```
 
-
-
 ## 代码规范
 ### [添加eslint](https://www.npmjs.com/package/eslint-config-airbnb)
 ```
@@ -37,9 +35,4 @@ npm i eslint-config-airbnb -D
 # 安装vscode插件：EditorConfig for VS Code
 ```
 
-### HardSourceWebpackPlugin 替换dll
-```
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-new HardSourceWebpackPlugin(),
 
-```
