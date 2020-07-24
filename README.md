@@ -1,7 +1,7 @@
 # webpackdemo版本分支
 * br1.0 基础多页面配置基本完成，分离打包dll
 * br1.0.1 基础多页面配置基本完成，HardSourceWebpackPlugin替换dll
-* br1.1 配置基本完善：配置文件移动到config文件夹\添加eslint\状态管理
+* br1.1 配置基本完善：配置文件移动到config文件夹\添加eslint\状态管理\冒烟测试
 
 # v1.1 
 * 配置文件config
@@ -34,5 +34,12 @@ npm i eslint-config-airbnb -D
 # 添加配置文件.editorconfig
 # 安装vscode插件：EditorConfig for VS Code
 ```
+
+## 冒烟测试：test/smoke
+使用如下：
+```
+npm run smoke
+```
+配置如下：
 
 

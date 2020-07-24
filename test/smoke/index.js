@@ -1,11 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
+/**
+ * rimraf: 以包的形式包装rm -rf命令，用来删除文件和文件夹的，不管文件夹是否为空，都可删除
+ * rimraf(f, [opts], callback)
+ * @param f a globbing pattern for files
+ * @param [opts] 配置
+ * @param callback 回调
+ */
 const rimraf = require('rimraf');
 const Mocha = require('mocha');
 
 const mocha = new Mocha({
     timeout: '10000ms'
 });
+
+
 
 rimraf('../../buid', () => {
     const prodConfig = require('../../config/webpack.pro.js');
