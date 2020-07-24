@@ -1,10 +1,10 @@
-# webpackdemo版本
-* v1.0 基础多页面配置基本完成，分离打包dll
-* v1.0.1 基础多页面配置基本完成，HardSourceWebpackPlugin替换dll
-* v1.1 配置基本完善
-* v1.2 webpack 打包组件和基础库
-* v1.3 ssr
-
+# webpackdemo版本分支
+* master
+* br1.0 基础多页面配置基本完成，分离打包dll
+* br1.0.1 基础多页面配置基本完成，HardSourceWebpackPlugin替换dll
+* br1.1 配置基本完善
+* br1.2 webpack 打包组件和基础库
+* br1.3 ssr
 
 # [eslint](https://www.npmjs.com/package/eslint-config-airbnb)
 ```
