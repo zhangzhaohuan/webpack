@@ -7,3 +7,19 @@
 
 ### v1.2 webpack 打包资源
 
+发布包过程如下：
+```
+npm login
+# 输入username pwd
+
+npm publish
+
+```
+
+升级版本
+
+升级补丁版本： npm version patch
+升级小版本号：npm version minor
+升级大版本号： npm version major
+
+
