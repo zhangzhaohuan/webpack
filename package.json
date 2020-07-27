@@ -15,6 +15,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test",
+      "...": "..."
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
@@ -44,6 +51,7 @@
     "hard-source-webpack-plugin": "^0.13.1",
     "html-webpack-externals-plugin": "^3.8.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.2.5",
     "istanbul": "^0.4.5",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
