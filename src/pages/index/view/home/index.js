@@ -9,7 +9,7 @@ import Image2 from '@asset/image/002.jpg';
 const Index = () => {
   // const mapState = useCallback((state) => state.commonReducer, []);
   // const common = useMappedState(mapState);
-
+  console.log('aa');
   const dispatch = useDispatch();
 
   const handel = () => {
