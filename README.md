@@ -1,7 +1,7 @@
 # webpackdemo版本分支
 * br1.0 基础多页面配置基本完成，分离打包dll
 * br1.0.1 基础多页面配置基本完成，HardSourceWebpackPlugin替换dll
-* br1.1 配置基本完善：配置文件移动到config文件夹\添加eslint\状态管理\冒烟测试
+* br1.1 配置基本完善：配置文件移动到config文件夹\添加eslint\状态管理\测试:冒烟|单元|覆盖率
 
 # v1.1 
 * 配置文件config
@@ -42,4 +42,12 @@ npm run smoke
 ```
 配置如下：
 
+## 单元测试
+使用如下；
+```
+npm i mocha -D
 
+npm run unit
+```
+## 测试覆盖率
+使用istanbul
