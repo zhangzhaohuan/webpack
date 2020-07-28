@@ -59,7 +59,9 @@ npm run unit
 
 ## [持续集成和Trabis CI](https://www.travis-ci.org/)
 
-## [Commit message 和 Change log 编写指](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+## [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+
+#### Commit message规范
 常用的提交类型：
 * feat:新功能
 * fix:修复bug
@@ -69,6 +71,7 @@ npm run unit
 * test:增加测试
 * chore:构建过程或辅助工具的变动
 
+实现如下：
 ```
 npm i validate-commit-msg -D
 ```
@@ -79,4 +82,23 @@ package.json添加配置:
       "commit-msg": "validate-commit-msg"
     }
   },
+```
+
+#### [Change log生成](https://www.npmjs.com/package/conventional-changelog-cli)
+
+
+```
+# 全局安装conventional-changelog-cli
+npm i conventional-changelog-cli -g
+
+# 写入package.json的scripts字段
+{
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w"
+  }
+}
+
+加上自从上次发布以来的变动:conventional-changelog -p angular -i CHANGELOG.md -w
+生成所有发布的 Change log:conventional-changelog -p angular -i CHANGELOG.md -w -r 0
+
 ```
