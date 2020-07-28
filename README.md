@@ -58,3 +58,25 @@ npm run unit
 使用istanbul
 
 ## [持续集成和Trabis CI](https://www.travis-ci.org/)
+
+## [Commit message 和 Change log 编写指](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+常用的提交类型：
+* feat:新功能
+* fix:修复bug
+* docs:文档
+* style:格式(不影响代码运行的变动)
+* refactor:重构(既不新增也不修改bug的代码变动)
+* test:增加测试
+* chore:构建过程或辅助工具的变动
+
+```
+npm i validate-commit-msg -D
+```
+package.json添加配置:
+```
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg"
+    }
+  },
+```
