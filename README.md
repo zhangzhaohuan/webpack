@@ -94,11 +94,12 @@ npm i conventional-changelog-cli -g
 # 写入package.json的scripts字段
 {
   "scripts": {
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   }
 }
 
-加上自从上次发布以来的变动:conventional-changelog -p angular -i CHANGELOG.md -w
-生成所有发布的 Change log:conventional-changelog -p angular -i CHANGELOG.md -w -r 0
-
+控制台显示自从上次发布以来的变动:conventional-changelog -p angular -i CHANGELOG.md -w
+文件中添加自从上次发布以来的变动:conventional-changelog -p angular -i CHANGELOG.md -s
+控制台生成所有发布的:conventional-changelog -p angular -i CHANGELOG.md -w -r 0
+文件中添加生成所有发布的:conventional-changelog -p angular -i CHANGELOG.md -s -r 0
 ```
