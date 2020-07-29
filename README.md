@@ -27,6 +27,7 @@
 ```
 
 ## 代码规范
+
 ### [添加eslint](https://www.npmjs.com/package/eslint-config-airbnb)
 ```
 # 此处以react项目为例
@@ -35,13 +36,17 @@ npm i eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks 
 npm i eslint-config-airbnb -D
 添加.eslintrc.json文件
 ```
+
 ### [添加editorconfig](https://www.jianshu.com/p/fac7dde906cc)
 ```
 # 添加配置文件.editorconfig
 # 安装vscode插件：EditorConfig for VS Code
 ```
+
 ## 测试：冒烟、单元、覆盖率
+
 ### 冒烟测试：test/smoke
+
 使用如下：
 ```
 npm run smoke
@@ -56,9 +61,11 @@ npm i mocha -D
 npm run unit
 ```
 ### 测试覆盖率
+
 使用istanbul
 
 ## [持续集成和Travis CI](https://www.travis-ci.org/)
+
 ```
 # 添加.travis.yml 文件
 language: node_js
