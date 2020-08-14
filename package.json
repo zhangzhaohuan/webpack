@@ -10,7 +10,7 @@
     "unit": "./node_modules/.bin/_mocha",
     "unit_rate": "istanbul cover ./node_modules/.bin/_mocha",
     "lint": "eslint --fix --ext .js,.jsx src",
-    "changelog":"conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "keywords": [],
   "author": "",
