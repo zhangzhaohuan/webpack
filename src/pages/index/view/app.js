@@ -5,6 +5,7 @@ import {
 import Loadable from 'react-loadable';
 import '../style/index.scss';
 import '../style/index.css';
+import '../../../asset/iconfont/iconfont.css';
 
 function Loading() {
   return <div>loading</div>;
@@ -31,6 +32,8 @@ const App = () => {
           <li><Link to="/login">login</Link></li>
           <li><Link to="/">home</Link></li>
           <div onClick={goToSearch} role="button">前往search页面</div>
+          {/* <i className="iconfont icon-correct" /> */}
+
         </ul>
         <Switch>
           <Route path="/login" component={Login} />

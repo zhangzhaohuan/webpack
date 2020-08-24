@@ -27,7 +27,7 @@ const Index = () => {
       <img src={Image} alt="" />
       <img src={Image2} alt="" />
       <div id="Js_index_demo" onClick={handel} role="button">Js_demo</div>
-
+      <span className="icon font_family">&#xe608;</span>
       <div onClick={handelDispatch} role="button">handelDispatch</div>
     </div>
   );
