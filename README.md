@@ -92,13 +92,17 @@ scripts:
 
 #### Commit message规范
 常用的提交类型：
-* feat:新功能
-* fix:修复bug
-* docs:文档
-* style:格式(不影响代码运行的变动)
-* refactor:重构(既不新增也不修改bug的代码变动)
-* test:增加测试
+* build: 打包静态资源
 * chore:构建过程或辅助工具的变动
+* docs:文档（documentation）表示 文档上传
+* feat:新功能（feature） 表示 新增加的功能
+* fix:修复bug
+* perf:优化相关,比如提升性能、体验
+* refactor:重构（即不是新增功能，也不是修改bug的代码变动）
+* revert:回滚到上一个版本
+* style:格式（不影响代码运行的变动）
+* test:增加测试 表示 增加测试用例
+* update: 更新 表示 优化更新的功能
 
 实现如下：
 ```

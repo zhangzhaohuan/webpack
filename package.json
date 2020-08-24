@@ -20,6 +20,23 @@
       "commit-msg": "validate-commit-msg"
     }
   },
+  "config": {
+    "validate-commit-msg": {
+      "types": [
+        "build",
+        "chore",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+        "update"
+      ]
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
