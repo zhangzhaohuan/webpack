@@ -101,6 +101,7 @@ scripts:
 * chore:构建过程或辅助工具的变动
 
 实现如下：
+
 ```
 npm i validate-commit-msg -D
 ```
