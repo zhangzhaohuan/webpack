@@ -106,7 +106,7 @@ scripts:
 
 实现如下：
 ```
-npm i validate-commit-msg -D
+npm i validate-commit-msg husky -D
 ```
 package.json添加配置:
 ```

@@ -11,7 +11,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // HardSourceWebpackPlugin 替换dll
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-
 //路经和路径函数
 const paths = require('./paths');
 
@@ -246,12 +245,13 @@ module.exports = {
       // automaticNameDelimiter: '~',
       // name: 'custom_common_chunk',
       // splitChunks的配置项都是作用于cacheGroup上的，
+      //[ test, priority and reuseExistingChunk ] can only be configured on cache group
       cacheGroups: {
         default: {
           // name:'default',
           minChunks: 2,
           priority: -20,  //权重
-          reuseExistingChunk: true
+          reuseExistingChunk: true  //
         },
         vendors: {
           name: 'vendors',
