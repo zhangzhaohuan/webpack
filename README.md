@@ -1,4 +1,5 @@
 # webpackdemo版本分支
+* scopehost: scopehosting
 * master 配置基本完善：
   * 配置文件移动到config文件夹\
   * 添加eslint\

@@ -1,22 +1,22 @@
-{
-  "parser": "babel-eslint",
-  "extends": "airbnb",
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/no-noninteractive-element-interactions": 0,
-    "jsx-a11y/interactive-supports-focus": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/jsx-one-expression-per-line": "off",
-    "react/jsx-closing-tag-location": 0,
-    "import/no-unresolved": [
-      2,
-      {
-          "ignore": ["@src","@component","@asset"] // @ 是设置的路径别名
-      }
-    ]
-   }
-}
+// {
+//   "parser": "babel-eslint",
+//   "extends": "airbnb",
+//   "env": {
+//     "browser": true,
+//     "node": true
+//   },
+//   "rules": {
+//     "jsx-a11y/click-events-have-key-events": 0,
+//     "jsx-a11y/no-noninteractive-element-interactions": 0,
+//     "jsx-a11y/interactive-supports-focus": 0,
+//     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+//     "react/jsx-one-expression-per-line": "off",
+//     "react/jsx-closing-tag-location": 0,
+//     "import/no-unresolved": [
+//       2,
+//       {
+//           "ignore": ["@src","@component","@asset"] // @ 是设置的路径别名
+//       }
+//     ]
+//    }
+// }
