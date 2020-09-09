@@ -9,9 +9,8 @@ import Image2 from '@asset/image/002.jpg';
 const Index = () => {
   // const mapState = useCallback((state) => state.commonReducer, []);
   // const common = useMappedState(mapState);
-  console.log('aa');
   const dispatch = useDispatch();
-
+  console.log('change');
   const handel = () => {
     $('#Js_index_demo').css({ color: '#ff0011', background: 'blue' });
   };

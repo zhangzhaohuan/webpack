@@ -257,27 +257,30 @@ module.exports = {
           name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
-          enforce: true
+          enforce: true,
+          reuseExistingChunk: true
         },
         reactbase: {
           name: 'reactbase',
-          chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
+          chunks: 'all',      //[all、initial、async]:[所有、入口、异步]
           test: (module) => (/react/.test(module.context) || /react-dom/.test(module.context)
             || /react-router-dom/.test(module.context) || /react-loadable/.test(module.context)),
           priority: -1,  //权重
           maxInitialRequests: 5,
-          reuseExistingChunk: false
+          reuseExistingChunk: true
         },
         jquery: {
           name: 'jquery',
-          chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
+          chunks: 'all',      //[all、initial、async]:[所有、入口、异步]
           test: (module) => (/jquery/.test(module.context)),
           priority: -1, //权重
-          reuseExistingChunk: false
+          reuseExistingChunk: true
         },
       }
     },
-    // runtimeChunk: 'single'
+    runtimeChunk: {
+      name: entrypoint => `runtimechunk~${entrypoint.name}`
+    }
   },
   plugins: [
     new HardSourceWebpackPlugin(),
@@ -346,5 +349,10 @@ module.exports = {
         }
       })
     }
+
   ],
+
+  performance:{
+    maxEntrypointSize:300000
+  }
 }
