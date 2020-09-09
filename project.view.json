@@ -1,0 +1,10 @@
+{
+  "index": {
+    "path": "./src/pages/index/index",
+    "chunks":[]
+  },
+  "grade": {
+    "path": "./src/pages/search/index",
+    "chunks":[]
+  }
+}

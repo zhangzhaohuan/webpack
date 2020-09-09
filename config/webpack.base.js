@@ -13,12 +13,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 //路经和路径函数
 const paths = require('./paths');
-
+const entry = require('./getEntry')();
 module.exports = {
-  entry: {
-    index: './src/pages/index/index.js',
-    search: './src/pages/search/index.js',
-  },
+  entry: entry,
   module: {
     rules: [
       {
@@ -278,9 +275,10 @@ module.exports = {
         },
       }
     },
-    runtimeChunk: {
-      name: entrypoint => `runtimechunk~${entrypoint.name}`
-    }
+    // 开发环境起不来
+    // runtimeChunk: {
+    //   name: entrypoint => `runtimechunk~${entrypoint.name}`
+    // }
   },
   plugins: [
     new HardSourceWebpackPlugin(),

@@ -10,7 +10,6 @@ const Index = () => {
   // const mapState = useCallback((state) => state.commonReducer, []);
   // const common = useMappedState(mapState);
   const dispatch = useDispatch();
-  console.log('change');
   const handel = () => {
     $('#Js_index_demo').css({ color: '#ff0011', background: 'blue' });
   };
