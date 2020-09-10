@@ -1,14 +1,11 @@
-const path = require('path');
 const chalk = require('chalk');
-
 const webpackMerge = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { HotModuleReplacementPlugin, optimize, DefinePlugin, DllReferencePlugin } = require('webpack');
+const { HotModuleReplacementPlugin } = require('webpack');
 const paths = require('./paths');
 const webpackBase = require('./webpack.base');
 // 抽离css
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 //进度条
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 

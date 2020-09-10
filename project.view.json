@@ -1,10 +1,22 @@
 {
   "index": {
-    "path": "./src/pages/index/index",
-    "chunks":[]
+    "page": "index",
+    "chunks": [
+      "index",
+      "vendors",
+      "reactbase",
+      "jquery",
+      "runtimechunk"
+    ]
   },
-  "grade": {
-    "path": "./src/pages/search/index",
-    "chunks":[]
+  "search": {
+    "page": "search",
+    "chunks": [
+      "search",
+      "vendors",
+      "reactbase",
+      "jquery",
+      "runtimechunk"
+    ]
   }
 }

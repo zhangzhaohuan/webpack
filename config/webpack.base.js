@@ -13,7 +13,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 //路经和路径函数
 const paths = require('./paths');
-const entry = require('./getEntry')();
+const {getEntry,getHtmlWebPack} = require('./getConfigItem.js')
+const entry = getEntry();
+const htmlWebPack =getHtmlWebPack();
 module.exports = {
   entry: entry,
   module: {
@@ -275,10 +277,9 @@ module.exports = {
         },
       }
     },
-    // 开发环境起不来
-    // runtimeChunk: {
-    //   name: entrypoint => `runtimechunk~${entrypoint.name}`
-    // }
+    runtimeChunk: {
+      name:'runtimechunk'
+    }
   },
   plugins: [
     new HardSourceWebpackPlugin(),
@@ -286,11 +287,10 @@ module.exports = {
       'process.env': JSON.stringify(process.env)
     }),
     new FriendlyErrorsWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: paths.resolveApp('src/pages/index/index.html'),
-      filename: 'index.html',
-      // chunks: ['index', 'reactbase','jquery','vendors','runtime'],
-      chunks: ['index', 'reactbase', 'jquery', 'vendors'],
+    ...htmlWebPack.map((ele)=>new HtmlWebpackPlugin({
+      template: paths.resolveApp(`src/pages/${ele.page}/index.html`),
+      filename: `${ele.page}.html`,
+      chunks: ele.chunks,
       inject: true,
       minify: {
         html5: true,
@@ -300,36 +300,7 @@ module.exports = {
         minifyJS: true,
         removeComments: false
       }
-    }),
-    new HtmlWebpackPlugin({
-      template: paths.resolveApp('src/pages/search/index.html'),
-      filename: 'search.html',
-      // chunks: ['search','reactbase', 'vendors','runtime'],
-      chunks: ['search', 'reactbase', 'jquery', 'vendors'],
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    }),
-    // new HtmlWebpackExternalsPlugin({
-    //     externals: [
-    //         {
-    //             module: 'react',
-    //             entry: 'https://11.url.cn/now/lib/16.2.0/react.min.js',
-    //             global: 'React',
-    //         },
-    //         {
-    //             module: 'react-dom',
-    //             entry: 'https://11.url.cn/now/lib/16.2.0/react-dom.min.js',
-    //             global: 'ReactDOM',
-    //         },
-    //     ],
-    // }),
+    })),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano'),
