@@ -1,8 +1,7 @@
-const path = require('path');
+const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { optimize, DefinePlugin } = require('webpack');
-
 //css浏览器前缀
 const autoprefixer = require('autoprefixer');
 // 压缩css
@@ -13,9 +12,43 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 //路经和路径函数
 const paths = require('./paths');
-const {getEntry,getHtmlWebPack} = require('./getConfigItem.js')
-const entry = getEntry();
-const htmlWebPack =getHtmlWebPack();
+const projectView = require(paths.resolveApp('./project.view.json'));
+
+const setMPA = () => {
+  const entry = {};
+  const htmlWebpackPlugins = [];
+  const entryFiles = glob.sync(paths.resolveApp('./src/pages/*/index.js'));
+  Object.keys(entryFiles)
+    .map((index) => {
+      const entryFile = entryFiles[index];
+      const match = entryFile.match(/src\/pages\/(.*)\/index\.js/);
+      const pageName = match && match[1];
+      entry[pageName] = entryFile;
+      const chunks = projectView[pageName].chunks || ["vendors", "reactbase", "jquery", "runtimechunk", pageName]
+      return htmlWebpackPlugins.push(
+        new HtmlWebpackPlugin({
+          template: paths.resolveApp(`src/pages/${pageName}/index.html`),
+          filename: `${pageName}.html`,
+          chunks: chunks,
+          inject: true,
+          minify: {
+            html5: true,
+            collapseWhitespace: true,
+            preserveLineBreaks: false,
+            minifyCSS: true,
+            minifyJS: true,
+            removeComments: false,
+          },
+        })
+      );
+    });
+  return {
+    entry,
+    htmlWebpackPlugins,
+  };
+};
+const { entry, htmlWebpackPlugins } = setMPA();
+
 module.exports = {
   entry: entry,
   module: {
@@ -24,7 +57,7 @@ module.exports = {
         oneOf: [
           {
             test: /\.(js|jsx)$/,
-            use: ['babel-loader','eslint-loader'],
+            use: ['babel-loader', 'eslint-loader'],
             include: paths.resolveApp('src')
           },
           {
@@ -236,7 +269,7 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',      //[all、initial、async]:[所有、入口、异步]
+      chunks: 'initial',      //[all、initial、async]:[所有、入口、异步]
       minSize: 30000,
       minChunks: 1,
       maxAsyncRequests: 5,        //每个异步模块的最大并发请求数：注意：同时又两个模块满足拆分条件的时候更大的包会先被拆分
@@ -278,7 +311,7 @@ module.exports = {
       }
     },
     runtimeChunk: {
-      name:'runtimechunk'
+      name: 'runtimechunk'
     }
   },
   plugins: [
@@ -287,20 +320,6 @@ module.exports = {
       'process.env': JSON.stringify(process.env)
     }),
     new FriendlyErrorsWebpackPlugin(),
-    ...htmlWebPack.map((ele)=>new HtmlWebpackPlugin({
-      template: paths.resolveApp(`src/pages/${ele.page}/index.html`),
-      filename: `${ele.page}.html`,
-      chunks: ele.chunks,
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    })),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano'),
@@ -312,16 +331,15 @@ module.exports = {
     new optimize.ModuleConcatenationPlugin(),  //scope hosting
     function () {
       this.hooks.done.tap('done', (stats) => {
+        // 构建异常和错误处理
         if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') == -1) {
           console.log('build error');
           process.exit(1);
         }
       })
     }
-
-  ],
-
-  performance:{
-    maxEntrypointSize:300000
+  ].concat(htmlWebpackPlugins),
+  performance: {
+    maxEntrypointSize: 300000
   }
 }
