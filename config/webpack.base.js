@@ -310,9 +310,9 @@ module.exports = {
         },
       }
     },
-    runtimeChunk: {
-      name: 'runtimechunk'
-    }
+    // runtimeChunk: {
+    //   name: 'runtimechunk'
+    // }
   },
   plugins: [
     new HardSourceWebpackPlugin(),
