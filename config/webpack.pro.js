@@ -4,11 +4,13 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionPlugin = require('compression-webpack-plugin');
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 //路径和路径函数
 const paths = require('./paths');
 const webpackBase = require('./webpack.base');
+const smp = new SpeedMeasurePlugin();
 
-module.exports = webpackMerge(webpackBase, {
+module.exports = smp.wrap(webpackMerge(webpackBase, {
   mode: 'production',
   output: {
     path: paths.resolveApp('build'),
@@ -62,4 +64,4 @@ module.exports = webpackMerge(webpackBase, {
     }),
     new CompressionPlugin(),
   ],
-})
+})) 
