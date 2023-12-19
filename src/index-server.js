@@ -1,5 +1,5 @@
 const React = require('react');
-require('./server.scss');
+require('./server.less');
 
 function Demo() {
   return (

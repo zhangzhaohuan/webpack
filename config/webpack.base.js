@@ -141,8 +141,8 @@ module.exports = {
             ]
           },
           {
-            test: /\.(scss|sass)$/,
-            exclude: /\.module\.(scss|sass)$/,
+            test: /\.(less)$/,
+            exclude: /\.module\.(less)$/,
             use: [
               {
                 loader: MiniCssExtractPlugin.loader,
@@ -178,11 +178,11 @@ module.exports = {
                   ],
                 },
               },
-              'sass-loader'
+              'less-loader'
             ]
           },
           {
-            test: /\.module\.(scss|sass)$/,
+            test: /\.module\.(less)$/,
             use: [
               {
                 loader: MiniCssExtractPlugin.loader,
@@ -219,7 +219,7 @@ module.exports = {
                   ],
                 },
               },
-              'sass-loader'
+              'less-loader'
             ]
           },
           {

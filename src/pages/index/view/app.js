@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router, Route, Switch, Link,
 } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import '../style/index.scss';
+import '../style/index.less';
 import '../style/index.css';
 import '../../../asset/iconfont/iconfont.css';
 
@@ -28,11 +28,11 @@ const App = () => {
   return (
     <div>
       <Router>
-        <ul>
+        <ul>
           <li><Link to="/login">login</Link></li>
           <li><Link to="/">home</Link></li>
           <div onClick={goToSearch} role="button">前往search页面</div>
-          {/* <i className="iconfont icon-correct" /> */}
+          <i className="iconfont icon-correct" />
 
         </ul>
         <Switch>

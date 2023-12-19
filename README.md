@@ -1,3 +1,12 @@
+## 环境依赖
+node v14.21.3
+npm 6.14.18
+
+# 项目启动
+```
+npm i
+npm start
+```
 # webpackdemo版本分支
 * master 配置基本完善：
   * 配置文件移动到config文件夹\
@@ -21,7 +30,7 @@
 * webpack.pro.js
 ```
 * 处理js:压缩、chunk
-* 处理css\sass: 支持css module，压缩、抽离
+* 处理css\less: 支持css module，压缩、抽离
 * 处理图片和字体库等其他资源
 * 生成html
 ```

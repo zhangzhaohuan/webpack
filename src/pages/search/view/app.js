@@ -8,11 +8,11 @@ import $ from 'jquery';
 
 // import Chunk from './index/chunk';
 
-import '../style/search.scss';
-import '../style/search2.scss';
+import '../style/search.less';
+import '../style/search2.less';
 
 // css module scc test
-import styles from '../style/search.module.scss';
+import styles from '../style/search.module.less';
 
 
 function Loading() {
