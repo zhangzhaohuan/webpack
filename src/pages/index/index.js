@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { StoreContext } from 'redux-react-hook';
 import store from './store/index';
 import App from './view/app';
@@ -11,8 +11,6 @@ function Index() {
     </StoreContext.Provider>
   );
 }
+const root = createRoot(document.getElementById('root'));
+root.render(<Index />);
 
-ReactDom.render(
-  <Index />,
-  document.getElementById('root'),
-);

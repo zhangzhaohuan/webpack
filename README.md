@@ -23,7 +23,10 @@ npm start
   * 状态管理\
   * 测试:冒烟|单元|覆盖率
   * 持续集成和Trabis CI
-
+* br2.0react18
+  * 升级react@18.2、react-dom@18.2
+    * [升级中遇到的问题]()
+  * redux:redux + redux-react-hook 方案保持不变
 ## 配置文件夹config
 * webpack.base.js
 * webpack.dev.js
