@@ -18,5 +18,6 @@
           "ignore": ["@src","@component","@asset"] // @ 是设置的路径别名
       }
     ]
-   }
+   },
+   "ignorePatterns": ["src/asset/iconfont/*"]
 }

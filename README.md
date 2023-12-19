@@ -2,7 +2,7 @@
 node v14.21.3
 npm 6.14.18
 
-# 项目启动
+## 项目启动
 ```
 npm i
 npm start
