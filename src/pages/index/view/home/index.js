@@ -58,12 +58,15 @@ const handelDispatchPromise = () => {
 
   return (
     <div>
-      <img src={Image} alt="" />
-      <img src={Image2} alt="" />
+      <h3>图片显示</h3>
+      <img src={Image} alt="base64" />
+      <img src={Image2} alt="file-loader" />
+      <div className="bgImg"></div>
       <div id="Js_index_demo" onClick={handel} role="button">
         Js_demo
       </div>
-      <span className="icon font_family">&#xe608;</span>
+      <span className="icon iconfont">&#xe61d;</span>
+      {/* <i className="iconfont">&#xe61d;</i> */}
       <div onClick={handelDispatch} role="button">
         handelDispatchAction
       </div>
@@ -73,7 +76,7 @@ const handelDispatchPromise = () => {
       <div onClick={handelDispatchPromise} role="button">
         handelDispatchPromise
       </div>
-      
+      <div><span className="icon iconfont">&#xe61d;</span></div>
     </div>
   );
 };

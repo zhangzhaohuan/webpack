@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+// webpack5使用异常
+// const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { optimize, DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -39,10 +40,6 @@ module.exports = {
             use: [
               {
                 loader: MiniCssExtractPlugin.loader,
-                options: {
-                  hmr: true,
-                  reloadAll: true,
-                },
               },
               {
                 loader: require.resolve('css-loader'),
@@ -78,10 +75,6 @@ module.exports = {
             use: [
               {
                 loader: MiniCssExtractPlugin.loader,
-                options: {
-                  hmr: true,
-                  reloadAll: true,
-                },
               },
               {
                 loader: require.resolve('css-loader'),
@@ -119,10 +112,6 @@ module.exports = {
             use: [
               {
                 loader: MiniCssExtractPlugin.loader,
-                options: {
-                  hmr: true,
-                  reloadAll: true,
-                },
               },
               {
                 loader: require.resolve('css-loader'),
@@ -159,10 +148,6 @@ module.exports = {
             use: [
               {
                 loader: MiniCssExtractPlugin.loader,
-                options: {
-                  hmr: true,
-                  reloadAll: true,
-                },
               },
               {
                 loader: require.resolve('css-loader'),
@@ -202,7 +187,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                   limit: 10240,
-                  name: 'asset/image/[name].[hash:8].[ext]'
+                  name: 'asset/image/[name].[contenthash:8].[ext]'
                 }
               }
             ]
@@ -211,14 +196,14 @@ module.exports = {
             test: /.(woff|woff2|eot|ttf|otf)$/,
             loader: 'file-loader',
             options: {
-              name: 'asset/media/[name].[hash:8].[ext]'
+              name: 'asset/media/[name].[contenthash:8].[ext]'
             }
           },
           {
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
             loader: 'file-loader',
             options: {
-              name: 'asset/image/[name].[hash:8].[ext]'
+              name: 'asset/image/[name].[contenthash:8].[ext]'
             }
           },
           //放在最后，处理没被其他loader处理的文件
@@ -226,7 +211,7 @@ module.exports = {
             exclude: [/\.(js|jsx)$/, /\.html$/, /\.json$/, /\.(sa|sc|c)ss$/],
             loader: 'file-loader',
             options: {
-              name: 'static/other/[name].[hash:8].[ext]'
+              name: 'static/other/[name].[contenthash:8].[ext]'
             }
           }
         ]
@@ -248,7 +233,7 @@ module.exports = {
     new DefinePlugin({
       'process.env': JSON.stringify(process.env)
     }),
-    new FriendlyErrorsWebpackPlugin(),
+    // new FriendlyErrorsWebpackPlugin(),
     new HtmlWebpackPlugin({
       inlineSource: '.css$',
       template: paths.resolveApp('src/server/index.html'),
