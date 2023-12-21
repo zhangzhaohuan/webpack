@@ -1,4 +1,8 @@
 #root{
-    background: red;
     display: flex;
+}
+.bgImg{
+    width:500px;
+    height: 386px;
+    background-image: url("~@asset/image/003.jpg");
 }

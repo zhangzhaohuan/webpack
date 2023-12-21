@@ -1,36 +1,34 @@
 const webpackMerge = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionPlugin = require('compression-webpack-plugin');
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 //路径和路径函数
 const paths = require('./paths');
 const webpackBase = require('./webpack.base');
-const smp = new SpeedMeasurePlugin();
+// const smp = new SpeedMeasurePlugin();
 
-module.exports = smp.wrap(webpackMerge(webpackBase, {
+module.exports = webpackMerge(webpackBase, {
   mode: 'production',
   output: {
     path: paths.resolveApp('build'),
-    filename: 'static/[name]/js/[name].[hash:8].js',
+    filename: 'static/[name]/js/[name].[contenthash:8].js',
     publicPath: '/',
     chunkFilename: 'static/chunks/[name].[chunkhash:8].chunk.js'
+  },
+  optimization:{
+    minimizer: [
+      // 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 `terser-webpack-plugin`），将下一行取消注释
+      // `...`,
+      new CssMinimizerPlugin(),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'static/[name]/css/[name].[hash:8].css',
-      chunkFilename: 'static/chunks/[id].[hash:8].css',
-    }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true
+      filename: 'static/[name]/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/chunks/[id].[contenthash:8].css',
     }),
     new BundleAnalyzerPlugin({
       //  可以是`server`，`static`或`disabled`。
@@ -64,4 +62,5 @@ module.exports = smp.wrap(webpackMerge(webpackBase, {
     }),
     new CompressionPlugin(),
   ],
-})) 
+  stats:"normal"
+})

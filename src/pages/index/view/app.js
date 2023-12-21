@@ -3,9 +3,6 @@ import {
   BrowserRouter as Router, Route, Switch, Link,
 } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import '../style/index.less';
-import '../style/index.css';
-import '../../../asset/iconfont/iconfont.css';
 
 function Loading() {
   return <div>loading</div>;

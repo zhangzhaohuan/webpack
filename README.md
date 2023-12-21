@@ -23,6 +23,47 @@ npm start
   * 状态管理\
   * 测试:冒烟|单元|覆盖率
   * 持续集成和Trabis CI
+* br2.0react18
+  * 升级react@18.2、react-dom@18.2
+    * [升级中遇到的问题]()
+  * redux:redux + redux-react-hook 方案保持不变
+
+  * 升级webpack及其影响
+    * 升级webpack4.x-->@5.89.0、webpack-cli4.x->@5.1.4
+      使用 npm ls webpack 命令查看存在的问题，然后升级各种loader、plugin
+
+      稍微改动
+      * 升级webpack-dev-server@3.8.0->4.15.1
+      * hash -->contenhash
+
+      需要升级的插件
+      * 升级html-webpack-plugin3.x->5.5.3
+      * 升级add-asset-html-webpack-plugin@3.1.3->
+      * 升级mini-css-extract-plugin@0.8.0->2.7.6
+      * 升级speed-measure-webpack-plugin@1.3.3->1.5.0
+
+      需要升级的loader
+      * 升级file-loader@4.2.0->@6.2.0
+      * 升级css-loader@3.2.0->
+      * 升级babel-loader8.x->9.1.3
+      * 升级style-loader@1.0.0->@3.3.3
+      * 升级url-loader@2.1.0->url-loader@4.1.1
+
+      废弃的插件
+      * 废弃optimize-css-assets-webpack-plugin --->css-minimizer-webpack-plugin
+          * 这个插件使用 cssnano 优化和压缩 CSS
+            * 升级cssnano4.x->6.0.1
+          * 在 source maps 和 assets 中使用查询字符串会更加准确，支持缓存和并发模式下运行
+      * 废弃extract-text-webpack-plugin@4.0.0-beta.0->mini-css-extract-plugin
+          * 异步加载
+          * 没有重复的编译（性能）
+          * 更容易使用
+          * 特别针对 CSS 开发
+      * 弃用friendly-errors-webpack-plugin@1.7.0
+      * 弃用hard-source-webpack-plugin-->webpack配置项cache
+      * 弃用progress-bar-webpack-plugin-->new webpack.ProgressPlugin(handler)或者webpackbar
+      * 弃用HotModuleReplacementPlugin--->[webpack-dev-server] "hot: true" automatically applies HMR plugin
+
 
 ## 配置文件夹config
 * webpack.base.js

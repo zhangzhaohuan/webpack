@@ -6,7 +6,8 @@ export const initState = {
 export const commonReducer = (state = initState, action) => {
   switch (action.type) {
     case 'common_istrue':
-      return { ...state, isCommon: true };
+      const { data } = action
+      return { ...state, ...data };
     default:
       return state;
   }
