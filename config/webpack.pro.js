@@ -3,6 +3,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 //路径和路径函数
 const paths = require('./paths');
 const webpackBase = require('./webpack.base');
@@ -18,10 +19,14 @@ module.exports = webpackMerge(webpackBase, {
     clean: true,
   },
   optimization:{
+    // 启用terser-webpack-plugin需要devtool使用[source-map, inline-source-map, hidden-source-map and nosources-source-map]
     minimizer: [
       // 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 `terser-webpack-plugin`），将下一行取消注释
       // `...`,
       new CssMinimizerPlugin(),
+      new TerserPlugin({
+        parallel: true,
+      }),
     ],
   },
   plugins: [
@@ -61,5 +66,6 @@ module.exports = webpackMerge(webpackBase, {
     }),
     new CompressionPlugin(),
   ],
-  stats:"normal"
+  stats: "normal",
+  devtool: 'nosources-source-map'
 })
