@@ -1,5 +1,4 @@
 const webpackMerge = require('webpack-merge');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -15,7 +14,8 @@ module.exports = webpackMerge(webpackBase, {
     path: paths.resolveApp('build'),
     filename: 'static/[name]/js/[name].[contenthash:8].js',
     publicPath: '/',
-    chunkFilename: 'static/chunks/[name].[chunkhash:8].chunk.js'
+    chunkFilename: 'static/chunks/[name].[chunkhash:8].chunk.js',
+    clean: true,
   },
   optimization:{
     minimizer: [
@@ -25,7 +25,6 @@ module.exports = webpackMerge(webpackBase, {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/[name]/css/[name].[contenthash:8].css',
       chunkFilename: 'static/chunks/[id].[contenthash:8].css',
