@@ -63,7 +63,7 @@ npm start
       * 弃用hard-source-webpack-plugin-->webpack配置项cache
       * 弃用progress-bar-webpack-plugin-->new webpack.ProgressPlugin(handler)或者webpackbar
       * 弃用HotModuleReplacementPlugin--->[webpack-dev-server] "hot: true" automatically applies HMR plugin
-
+      * 弃用clean-webpack-plugin--->[output] "clean: true" automatically delete
 
 ## 配置文件夹config
 * webpack.base.js

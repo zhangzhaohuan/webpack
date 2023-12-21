@@ -1,6 +1,5 @@
 // const chalk = require('chalk');
 const webpackMerge = require('webpack-merge');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const paths = require('./paths');
 const webpackBase = require('./webpack.base');
 // 抽离css
@@ -13,13 +12,13 @@ module.exports = webpackMerge(webpackBase, {
     filename: 'static/[name]/js/[name].js',
     publicPath: '/',
     chunkFilename: '[name].chunk.js',
+    clean: true,
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'static/[name]/css/[name].css',
       chunkFilename: '[id].css',
     }),
-    new CleanWebpackPlugin(),
   ],
   optimization: {
     minimize: true,
