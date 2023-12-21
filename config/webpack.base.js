@@ -29,7 +29,7 @@ const setMPA = () => {
       const match = entryFile.match(/src\/pages\/(.*)\/index\.js/);
       const pageName = match && match[1];
       entry[pageName] = entryFile;
-      const chunks = projectView[pageName].chunks || ["vendors", "reactbase", "jquery", "runtimechunk", pageName]
+      const chunks = (projectView[pageName]&& projectView[pageName].chunks) || ["vendors", "reactbase", "jquery", "runtimechunk", pageName]
       return htmlWebpackPlugins.push(
         new HtmlWebpackPlugin({
           template: paths.resolveApp(`src/pages/${pageName}/index.html`),
