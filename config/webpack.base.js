@@ -254,43 +254,35 @@ module.exports = {
               'less-loader'
             ]
           },
-          {
+          {     
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-            loader: 'url-loader',
-            options: {
-              limit: 10240,
-              name: `asset/image/[name]${contentHash8}.[ext]`,
-              esModule: false,  // 背景图显示异常问题
+            // 3.合理的规范:
+            // 3.1.对于小一点的图片, 可以进行base64编码
+            // 3.2.对于大一点的图片, 单独的图片打包, 形成url地址, 单独的请求这个url图片
+            type: "asset",
+            parser: {
+              dataUrlCondition: {
+                maxSize: 10 * 1024
+              }
             },
-            type: 'javascript/auto',
+            generator: {
+              filename: `asset/image/[name]${contentHash8}.[ext]`
+            }, 
           },
           {
             test: /.(woff|woff2|eot|ttf|otf)$/,
-            loader: 'file-loader',
-            options: {
-              name: 'asset/media/[name].[ext]',
-              esModule: false,  // iconFont显示异常问题
-            },
-            type: 'javascript/auto'
+            type: "asset/resource",
+            generator: {
+              filename: 'asset/font/[name].[ext]'
+            }, 
           },
           {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-            loader: 'file-loader',
-            options: {
-              name: `asset/image/[name]${contentHash8}.[ext]`,
-              esModule: false,
-            },
-            type: 'javascript/auto',
+            exclude: [/\.(js|jsx)$/, /\.html$/, /\.json$/, /\.(sa|sc|le|c)ss$/],
+            type: "asset/resource",
+            generator: {
+              filename: 'asset/other/[name].[ext]'
+            }, 
           },
-          //放在最后，处理没被其他loader处理的文件
-          {
-            exclude: [/\.(js|jsx)$/, /\.html$/, /\.json$/, /\.(sa|sc|c)ss$/],
-            loader: 'file-loader',
-            options: {
-              name: 'static/other/[name].[contenthash:8].[ext]'
-            },
-            type: 'javascript/auto'
-          }
         ]
       }
     ]

@@ -63,7 +63,8 @@ npm start
       * 弃用hard-source-webpack-plugin-->webpack配置项cache
       * 弃用progress-bar-webpack-plugin-->new webpack.ProgressPlugin(handler)或者webpackbar
       * 弃用HotModuleReplacementPlugin--->[webpack-dev-server] "hot: true" automatically applies HMR plugin
-
+* br2.1
+  * 弃用url-loader、file-loader--->[资源模块](https://webpack.docschina.org/guides/asset-modules/)
 
 ## 配置文件夹config
 * webpack.base.js
