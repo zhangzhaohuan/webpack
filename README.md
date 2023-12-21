@@ -23,15 +23,15 @@ npm start
   * 状态管理\
   * 测试:冒烟|单元|覆盖率
   * 持续集成和Trabis CI
-* br2.0react18
+* br2.0
   * 升级react@18.2、react-dom@18.2
     * [升级中遇到的问题]()
   * redux:redux + redux-react-hook 方案保持不变
 
-  * 升级webpack及其影响
+  * 升级webpack5.x及其影响
     * 升级webpack4.x-->@5.89.0、webpack-cli4.x->@5.1.4
       使用 npm ls webpack 命令查看存在的问题，然后升级各种loader、plugin
-
+      
       稍微改动
       * 升级webpack-dev-server@3.8.0->4.15.1
       * hash -->contenhash
