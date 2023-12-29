@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // webpack5使用异常
 // const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { optimize, DefinePlugin } = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 //css浏览器前缀
 const autoprefixer = require('autoprefixer');
@@ -229,7 +229,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
     }),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new DefinePlugin({
       'process.env': JSON.stringify(process.env)
     }),
